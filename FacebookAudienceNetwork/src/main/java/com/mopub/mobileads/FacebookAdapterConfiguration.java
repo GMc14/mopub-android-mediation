@@ -74,7 +74,6 @@ public class FacebookAdapterConfiguration extends BaseAdapterConfiguration {
 
         synchronized (FacebookAdapterConfiguration.class) {
             try {
-                tokenReference.set(BidderTokenProvider.getBidderToken(context));
                 List<String> placementIds = new ArrayList<>();
 
                 if (configuration != null && !configuration.isEmpty()) {
@@ -95,6 +94,8 @@ public class FacebookAdapterConfiguration extends BaseAdapterConfiguration {
                             .withMediationService("MOPUB_" + MoPub.SDK_VERSION + ":" + ADAPTER_VERSION)
                             .initialize();
                 }
+                
+                tokenReference.set(BidderTokenProvider.getBidderToken(context));
             } catch (Throwable t) {
                 MoPubLog.log(
                         CUSTOM_WITH_THROWABLE,
